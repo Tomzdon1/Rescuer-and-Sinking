@@ -1,1 +1,0 @@
-ratownik.Rysowanie

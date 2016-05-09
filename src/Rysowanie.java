@@ -26,11 +26,13 @@ public class Rysowanie extends JComponent{
     public int Y;
     
     
-    public Rysowanie(int rat_x,int rat_y,int ton_x,int ton_y){
+    public Rysowanie(int rat_x,int rat_y,int ton_x,int ton_y,int a,int b){
        ratownik_x=rat_x;
        ratownik_y=rat_y;
        tonocy_x=ton_x;
        tonocy_y=ton_y;
+       X=a;
+       Y=b;
      
                 }
     
