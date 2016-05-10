@@ -19,6 +19,8 @@ public class Rameczka extends javax.swing.JFrame {
     public int r_y;
     public int Vpp;
     public int Vmm;
+     public int tx;
+     public int ty;
    //public test rys ;
    public Rysowanie rys;
    public double[] czass;
@@ -63,6 +65,11 @@ public class Rameczka extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 200));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,8 +183,8 @@ public class Rameczka extends javax.swing.JFrame {
      
     rys.ratownik_x=r_x;
     rys.ratownik_y=r_y;
-    rys.tonocy_x=t_x;
-    rys.tonocy_y=100-t_y;
+    rys.tonocy_x=tx;
+    rys.tonocy_y=100-ty;
     rys.X=wartosc;
     rys.Y=100;
     rys.repaint();
@@ -191,6 +198,14 @@ public class Rameczka extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_aktualuzujActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+      
+         tx=  evt.getX();
+       ty=evt.getY();
+        System.out.println(tx+ "  " + ty);
+        
+    }//GEN-LAST:event_jPanel1MouseClicked
    
       public int gettX(){
                 String tonacy_x=tonacyX.getText();
