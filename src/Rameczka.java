@@ -29,6 +29,7 @@ public class Rameczka extends javax.swing.JFrame {
    private double[] t=new double[401];
   private int wartosc;
   private double lower=0;
+  public Rameczka tom;
     
     public Rameczka() {
         initComponents();
@@ -159,13 +160,14 @@ public class Rameczka extends javax.swing.JFrame {
     private void aktualuzujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aktualuzujActionPerformed
         if(evt.getSource()==aktualuzuj){
           
-        gettX();
-        gettY();
-        getrX();
-        getrY();
-        getVp();
-        getVm();
-        optymal();
+     t_x=   gettX();
+     t_y=   gettY();
+     r_x=   getrX();
+     r_y=   getrY();
+     Vpp=   getVp();
+     Vmm=   getVm();
+      tom=new Rameczka();
+     wartosc=   tom.optymal(t_x,t_y,r_x,r_y,Vpp,Vmm);
       
      
         
@@ -176,11 +178,14 @@ public class Rameczka extends javax.swing.JFrame {
     rys.ratownik_y=r_y;
     rys.tonocy_x=t_x;
     rys.tonocy_y=100-t_y;
-    rys.X=sprawdz();
+    rys.X=wartosc;
     rys.Y=100;
     rys.repaint();
  
-    System.out.println(sprawdz() );
+            System.out.println(wartosc);
+    
+    
+    
        
           
         }
@@ -209,29 +214,29 @@ public class Rameczka extends javax.swing.JFrame {
             r_y=Integer.parseInt(ratownik_y);
           return r_y;
                    }
-      public int getVp(){
+      public int getVm(){
              String Vp=predkoscMorze.getText();
             Vmm=Integer.parseInt(Vp);
           return Vmm;
       }
-      public int getVm(){
+      public int getVp(){
             String Vm=predkoscPlaza.getText();
             Vpp=Integer.parseInt(Vm);
           return Vpp;
       }
       
-      public void optymal(){
+      public int optymal(int x_t,int y_t,int x_r,int y_r,int Vppp,int Vmmm){
           for(int i=0; i<401;i++){
               int x=i;
               int y=200;
               //r_y=r_y-200;
-               s1[i]=Math.sqrt(Math.pow((x-r_x),2)+Math.pow((r_y-y),2));
+               s1[i]=Math.sqrt(Math.pow((x-x_r),2)+Math.pow((y_r-y),2));
               
              
-               s2[i]=Math.sqrt(Math.pow((x-t_x),2)+Math.pow((t_y),2));
+               s2[i]=Math.sqrt(Math.pow((x-x_t),2)+Math.pow((y_t),2));
               
-               t1[i]=s1[i]/Vpp;
-               t2[i]=s2[i]/Vmm;
+               t1[i]=s1[i]/Vppp;
+               t2[i]=s2[i]/Vmmm;
                t[i]=t1[i]+t2[i];
              // czass[i]=t;
        
@@ -241,10 +246,7 @@ public class Rameczka extends javax.swing.JFrame {
           //for(int j =0;j <401;j++){
             //  System.out.println(czass[j]);
           //}
-       
-      }
-      public int sprawdz(){
-          for(int k=0;k<401;k++){
+           for(int k=0;k<401;k++){
            
               if(lower==0){
                   lower=t[k];
@@ -258,6 +260,9 @@ public class Rameczka extends javax.swing.JFrame {
           }   
           return wartosc;
       }
+     
+      
+      
     /**
      * @param args the command line arguments
      */
